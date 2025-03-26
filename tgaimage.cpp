@@ -259,7 +259,9 @@ bool TGAImage::set(int x, int y, TGAColor c) {
 	if (!data || x<0 || y<0 || x>=width || y>=height) {
 		return false;
 	}
-	memcpy(data+(x+y*width)*bytespp, c.raw, bytespp);
+	// 以左下为原点
+	memcpy(data+(x+(height-1-y)*width)*bytespp, c.raw, bytespp);
+	// memcpy(data+(x+y*width)*bytespp, c.raw, bytespp);
 	return true;
 }
 
