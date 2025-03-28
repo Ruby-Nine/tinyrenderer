@@ -2,8 +2,11 @@ cmake_minimum_required(VERSION 3.15.1)
 
 project(tinyrenderer)
 
-# set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
+add_compile_options(-Wall -O3 -std=c++17)
 
-include_directories(${CMAKE_SOURCE_DIR})
+# include_directories(${CMAKE_SOURCE_DIR})
 
-add_executable(tinyrenderer main.cpp tgaimage.h tgaimage.cpp)
+add_executable(tinyrenderer main.cpp global.hpp tgaimage.hpp tgaimage.cpp rasterizer.hpp rasterizer.cpp model.hpp model.cpp geometry.hpp)
+
+
+
