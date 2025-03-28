@@ -81,6 +81,36 @@ void Rasterizer::render_wireframe_triangle(Triangle triangle){
 	line(v2.x, v2.y, v0.x, v0.y, white);
 }
 
+void Rasterizer::render_triangle(Vec3i v1, Vec3i v2, Vec3i v3, TGAColor color){
+	int xmin = std::min(v1.x, std::min(v2.x, v3.x));
+	int xmax = std::max(v1.x, std::max(v2.x, v3.x));
+	int ymin = std::min(v1.y, std::min(v2.y, v3.y));
+	int ymax = std::max(v1.y, std::max(v2.y, v3.y));
+
+	Vec3i e1 = v2 - v1;
+	Vec3i e2 = v3 - v2;
+	Vec3i e3 = v1 - v3;
+
+	for(int x=xmin; x<=xmax; ++x){
+		for(int y=ymin; y<=ymax; ++y){
+			Vec3i p(x, y, 0.f);
+			Vec3i ep1 = p - v1;
+			Vec3i ep2 = p - v2;
+			Vec3i ep3 = p - v3;
+
+			int dp1 = cross_product(e1, ep1).z;
+			int dp2 = cross_product(e2, ep2).z;
+			int dp3 = cross_product(e3, ep3).z;
+
+			if(dp1 == 0 || dp2 == 0 || dp3 == 0 || 
+			(dp1 > 0 && dp2 > 0 && dp3 > 0) ||
+			(dp1 < 0 && dp2 < 0 && dp3 < 0)){
+				image.set(x, y, color);
+			}
+		}
+	}
+}
+
 void Rasterizer::render_wireframe(Model& model){
 	for(auto &t: model.get_triangles()){
 		render_wireframe_triangle(t);

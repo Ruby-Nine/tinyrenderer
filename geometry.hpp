@@ -62,15 +62,15 @@ template <class t> struct Mat3 {
 	}
 };
 
-template <class t> t dot(const Vec3<t> &a, const Vec3<t> &b) {
+template <class t> t dot_product(const Vec3<t> &a, const Vec3<t> &b) {
 	return a.x*b.x + a.y*b.y + a.z*b.z;
 }
 
-template <class t> Vec3<t> dot(const Mat3<t> &a, const Vec3<t> &b) {
+template <class t> Vec3<t> dot_product(const Mat3<t> &a, const Vec3<t> &b) {
 	return Vec3<t>(dot(a.m.x, b), dot(a.m.y, b), dot(a.m.z, b));
 }
 
-template <class t> Vec3<t> cross(const Vec3<t> &a, const Vec3<t> &b) {
+template <class t> Vec3<t> cross_product(const Vec3<t> &a, const Vec3<t> &b) {
 	return Vec3<t>(a.y*b.z-a.z*b.y, a.z*b.x-a.x*b.z, a.x*b.y-a.y*b.x);
 }
 

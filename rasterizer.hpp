@@ -24,5 +24,6 @@ public:
     void line(int x0, int y0, int x1, int y1, TGAColor color);
     void line_algo2(int x0, int y0, int x1, int y1, TGAColor color);
     void render_wireframe_triangle(Triangle triangle);
+    void render_triangle(Vec3i v1, Vec3i v2, Vec3i v3, TGAColor color);
     void render_wireframe(Model &model);
 };

@@ -29,8 +29,13 @@ void test_line_performance() {
 }
 
 int main(int argc, char** argv) {
-	Model model("../obj/african_head.obj");
+	// Model model("../obj/african_head.obj");
 	Rasterizer rasterizer(1024, 1024, TGAImage::RGB);
-	rasterizer.render_wireframe(model);
+	// rasterizer.render_wireframe(model);
+	Vec3i a(200, 200, 0);
+	Vec3i b(300, 500, 0);
+	Vec3i c(600, 400, 0);
+	rasterizer.render_triangle(a, b, c, white);
+	rasterizer.save_images("triangle.tga");
 	return 0;
 }
