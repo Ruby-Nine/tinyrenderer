@@ -7,7 +7,7 @@ switch到了最初的版本并且删除了分支记录
 
 本项目在windows上开发，使用msys2的mingw64 + VSCode的CMake插件进行编译。
 具体配置参考CMAkeLists.txt和.vscode文件夹中的设置。
-.vscode的设置中含有绝对路径，仅作参考，如需使用请自行根据环境更改。
+设置中含有绝对路径，仅作参考，如需使用请自行根据环境更改。
 
 ## 备注
 
