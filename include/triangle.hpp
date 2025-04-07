@@ -3,6 +3,7 @@
 #include <eigen3/Eigen/Eigen>
 #include <vector>
 #include <memory>
+#include "triangle.hpp"
 
 struct MeshData{
     Eigen::Vector3i vert_idx;

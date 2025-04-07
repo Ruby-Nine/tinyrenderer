@@ -2,14 +2,14 @@
 #include <eigen3/Eigen/Eigen>
 #include <vector>
 #include "camera.hpp"
+#include "triangle.hpp"
 
 
 class Rasterizer{
 private:
-    std::vector<std::vector<float>> zBuffer;
     Eigen::Matrix4f MVP_matrix;
 public:
-    Rasterizer();
+    Rasterizer(){};
     Rasterizer(Camera &camera);
     ~Rasterizer(){};
 
@@ -20,11 +20,12 @@ public:
         return n_v.head<3>();
     }
 
-    Eigen::Vector3f apply_MVP(Triangle &triangle){
+    Triangle apply_MVP(Triangle &triangle){
         Triangle new_triangle = triangle;
         for(int i=0; i<3; ++i){
             new_triangle.v[i].pos = apply_MVP(new_triangle.v[i].pos);
             new_triangle.v[i].norm = apply_MVP(new_triangle.v[i].norm);
         }
+        return new_triangle;
     }
 };

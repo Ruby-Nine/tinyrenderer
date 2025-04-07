@@ -12,6 +12,7 @@ public:
     float zNear; // 近裁剪面
     float zFar; // 远裁剪面
 
+    Camera(){};
     Camera(Eigen::Vector3f eye, Eigen::Vector3f look, Eigen::Vector3f up, float fov, float aspect_ratio, float near, float far) : 
         eye_pos(eye), look_at(look), up(up), fov(fov), aspect_ratio(aspect_ratio), zNear(near), zFar(far){};
 };

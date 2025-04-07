@@ -66,28 +66,28 @@ void MeshTriangle::load_mesh(std::string fpath){
                 std::cerr << "Error: Invalid face format at line " << line_count << std::endl;
                 continue;
             }
-            auto vert_pattern = split(pattern[1], "/");
-            auto uv_pattern = split(pattern[1], "/");
-            auto norm_pattern = split(pattern[1], "/");
-            if(vert_pattern.size() !=3 && uv_pattern.size() !=3 && norm_pattern.size() !=3){
+            auto v1_pattern = split(pattern[1], "/");
+            auto v2_pattern = split(pattern[2], "/");
+            auto v3_pattern = split(pattern[3], "/");
+            if(v1_pattern.size() !=3 && v2_pattern.size() !=3 && v3_pattern.size() !=3){
                 std::cerr << "Error: Invalid face format at line " << line_count << std::endl;
                 continue;
             }
 
             Eigen::Vector3i vert_idx(
-                std::stoi(vert_pattern[0]),
-                std::stoi(vert_pattern[1]),
-                std::stoi(vert_pattern[2])
+                std::stoi(v1_pattern[0]) - 1,
+                std::stoi(v2_pattern[0]) - 1,
+                std::stoi(v3_pattern[0]) - 1
             );
             Eigen::Vector3i uv_idx(
-                std::stoi(uv_pattern[0]),
-                std::stoi(uv_pattern[1]),
-                std::stoi(uv_pattern[2])
+                std::stoi(v1_pattern[1]) - 1,
+                std::stoi(v2_pattern[1]) - 1,
+                std::stoi(v3_pattern[1]) - 1
             );
             Eigen::Vector3i norm_idx(
-                std::stoi(norm_pattern[0]),
-                std::stoi(norm_pattern[1]),
-                std::stoi(norm_pattern[2])
+                std::stoi(v1_pattern[2]) - 1,
+                std::stoi(v2_pattern[2]) - 1,
+                std::stoi(v3_pattern[2]) - 1
             );
             idxs.emplace_back(MeshData(vert_idx, uv_idx, norm_idx));
         }
